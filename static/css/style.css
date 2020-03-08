@@ -1,0 +1,36 @@
+   body {
+        background-color: #f8f9fa !important;
+    }
+
+    b {
+        color: #8ee28c;
+    }
+
+    a {
+        display: inline-block;
+        color: black;
+        line-height: 1;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    a:after {
+        background-color: #800080;
+        display: block;
+        content: "";
+        height: 2px;
+        width: 0%;
+        -webkit-transition: width .3s ease-in-out;
+
+        transition: width .3s ease-in-out;
+    }
+
+    a:hover:after,
+    a:focus:after {
+        width: 100%;
+    }
+
+    .uname {
+        margin-left: auto;
+
+    }

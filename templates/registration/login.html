@@ -1,0 +1,32 @@
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="shortcut icon" href="http://www.chetrachap.com/wp-content/uploads/2017/12/Logo-Growth-Profile-1500.png"
+          type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
+
+    {% block header %}
+        <nav class="navbar navbar-light" style="background-color: #8ee28c;">
+            <a class="navbar-brand" href="#" >Авторизация</a>
+        </nav>
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+{% block login_auth %}
+    <div id='auth' align='center' style="margin: 100px;">
+    <form class='validForm' id='signin' method='post' action='/login'>
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success" data-loading-text=«Загрузка…»>Отправить</button>
+    {% if login_error %} # если вышла ошибка или такой пользователь не существует
+        <label class=»error»>{{ login_error }}</label>
+    {% endif %}
+{% endblock login_auth %}
+</form>
+</div>
+{% endblock %}
+
+

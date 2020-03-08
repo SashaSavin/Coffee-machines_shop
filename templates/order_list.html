@@ -1,0 +1,113 @@
+{% load static %}
+{% block head %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Список заказов</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="shortcut icon" href="http://www.chetrachap.com/wp-content/uploads/2017/12/Logo-Growth-Profile-1500.png"
+        type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/order_list_page_style.css' %}">
+
+    {% block header %}
+        <nav class="navbar navbar-light" style="background-color: #8ee28c;">
+            <a class="navbar-brand" href="http://localhost:8000/">Страница заказа</a>
+        </nav>
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+    <div id="app">
+        <div id='buttons' align='center' style='margin:20px;'>
+            <subscript-button btn_title="ОПЛАЧЕНО" color="btn btn-primary"></subscript-button>
+            <subscript-button btn_title="НЕОПЛАЧЕНО" color="btn btn-danger"></subscript-button>
+            <subscript-button btn_title="В ДОСТАВКЕ" color="btn btn-secondary"></subscript-button>
+        </div>
+
+        <input type="text" v-model="filter" placeholder="Поиск...">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">номер п/п</th>
+                    <th scope="col">номер заказа</th>
+                    <th scope="col">клиент</th>
+                    <th scope="col">менеджер</th>
+                    <th scope="col">статус заказа</th>
+                    <th scope="col">сумма заказа(usd)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="i in sortOptions">
+                    <th scope="row">1</th>
+                    <td>{% verbatim %}{{ i.id }}{% endverbatim %}</td>
+                     <td>{% verbatim %}{{ i.client.username }}{% endverbatim %}</td>
+                    <td>{% verbatim %}{{ i.manager.username }}{% endverbatim %}</td>
+                    <td>{% verbatim %}{{ i.order_status }}{% endverbatim %}</td>
+                    <td>{% verbatim %}{{ i.order_price }}{% endverbatim %}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+
+        var subscriptButton = {
+            props: ['btn_title', 'color'],
+            data: function () {
+                return {
+                    isPressed: false
+                }
+            },
+            methods: {
+                buttonPressed() {
+                    this.isPressed = !this.isPressed
+                    return this.isPressed
+                },
+                buttonClass() {
+                    if (this.isPressed) {
+                        return this.color;
+                    } else {
+                        return "btn btn-success";
+                    };
+                }
+            },
+            template: `<button type="submit" 
+                        v-bind:class="buttonClass()" 
+                        v-on:click="buttonPressed()">
+                        {% verbatim %}{{btn_title}}{% endverbatim %}
+                        </button>`
+        };
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                orders_data: [],
+                filter: '',
+                button_toggle: false,
+            },
+
+            computed: {
+                sortOptions() {
+                    if (this.filter !== '') {
+                        return this.orders_data.filter(data => data.author.toLowerCase().includes(this.filter));
+                    } else {
+                        return this.orders_data;
+                    }
+                }
+            },
+            components: {
+                'subscript-button': subscriptButton,
+
+            },
+            mounted() {
+                axios
+                    .get('http://localhost:8000/api/order/?format=json')
+                    .then(response => (this.orders_data = response.data));
+
+            }
+        });
+    </script>
+{% endblock %}

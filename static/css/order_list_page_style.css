@@ -1,0 +1,17 @@
+    #app {
+        margin: 30px;
+        padding: 30px;
+    }
+
+    .btn {
+        margin-top: 100px;
+    }
+
+    .uname {
+        margin-left: auto;
+
+    }
+
+    body {
+        background-color: #f8f9fa !important;
+    }
