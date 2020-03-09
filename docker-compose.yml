@@ -1,12 +1,9 @@
-version: "3"
-
+version: '3.7'
 services:
-
-  web:
-    build: ./web/
-    ports:
-      - "8001:8001"
-    volumes:
-      - ./web:/code
-      - /home/cosmo/db_data/db.sqlite3:/code/db.sqlite3
-    command: python manage.py runserver 0.0.0.0:8001
+    web:
+        build: .
+        command: python /code/manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/code
+        ports:
+            - 8000:8000
