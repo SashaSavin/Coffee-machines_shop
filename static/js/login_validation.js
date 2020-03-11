@@ -17,14 +17,13 @@
 // })
 
 
-
 $.ajax({
     url: '127.0.0.1:8000/login',
-    type: 'GET',
+    type: 'POST',
     success: function(data) {
         alert('ok!');
     },
     failure: function(data) { 
-        alert('Got an error dude');
+        alert('Got an error, dude');
     }
 }); 

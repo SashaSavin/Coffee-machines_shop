@@ -25,7 +25,7 @@
         </div>
 
         <input type="text" v-model="filter" placeholder="Поиск...">
-        <table class="table table-bordered">
+        <table class="table table-hover ">
             <thead>
                 <tr>
                     <th scope="col">номер п/п</th>
@@ -92,7 +92,7 @@
             computed: {
                 sortOptions() {
                     if (this.filter !== '') {
-                        return this.orders_data.filter(data => data.author.toLowerCase().includes(this.filter));
+                        return this.orders_data.filter(data => data.manager.toLowerCase().includes(this.filter));
                     } else {
                         return this.orders_data;
                     }

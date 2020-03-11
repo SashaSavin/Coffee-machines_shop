@@ -13,7 +13,7 @@
 
         {% block header %}
             <nav class="navbar navbar-light" style="background-color: #8ee28c;">
-                <a class="navbar-brand" href="#">Страница заказа</a>
+                <a class="navbar-brand" href="http://localhost:8000/orders_list">Страница заказа</a>
 
                 {% if user.is_authenticated %}
                     <div class='uname' style=" margin-left: auto;">{{ request.user.username }},</div>

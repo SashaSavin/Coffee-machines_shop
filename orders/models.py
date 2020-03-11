@@ -37,11 +37,11 @@ class Product(models.Model):
 
 class Order(models.Model):
 
-    products_list = models.ManyToManyField(Product)
-    manager = models.ForeignKey(User, on_delete=models.CASCADE, related_name='manager_orders')
-    client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='client_orders')
+    products_list = models.ManyToManyField(Product, verbose_name='Список товаров')
+    manager = models.ForeignKey(User, on_delete=models.CASCADE, related_name='manager_orders', verbose_name='Менеджер')
+    client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='client_orders', verbose_name='Клиент')
     author = models.CharField(max_length=100, verbose_name='Автор')
-    number = models.IntegerField()
+    number = models.IntegerField(verbose_name='Номер')
     order_price = models.DecimalField(
         max_digits=10, decimal_places=2, default=0, verbose_name='Сумма заказа')
     date_and_time_of_order = models.DateTimeField(
@@ -49,7 +49,7 @@ class Order(models.Model):
     date_and_time_of_change_of_order = models.DateTimeField(
         auto_now_add=True, auto_now=False, verbose_name='Обновлён')
     order_status = models.CharField(
-        max_length=50, default=UNPAID, choices=STATUS_CHOICES)
+        max_length=50, default=UNPAID, choices=STATUS_CHOICES, verbose_name='Статус заказа')
 
     class Meta:
         verbose_name = 'Заказ'

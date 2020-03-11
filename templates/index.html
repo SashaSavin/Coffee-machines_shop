@@ -65,7 +65,9 @@
         </ul>
  
         <div>
-            <button style="  display:block; margin: auto;" @click="load_more" ><i class="fa fa-level-down" aria-hidden="true"></i>
+        <button style="  display:block; margin: auto;" @click="load_more"  >Вперёд</i>
+</button>
+  <button style=" display:block; margin: auto;" @click="go_back" >Назад</i>
 </button>
         </div>
         <button type="submit" v-on:click="redirect" class="btn btn-success" style="position: relative; left: 50%;transform: translate(-50%, 0); margin:20px">
@@ -84,7 +86,7 @@
     var app = new Vue({
         el: '#Order_list',
         data: {
-            url: 'http://localhost:8000/api/products/?format=json',
+            url: 'http://localhost:8000/api/products/',
             products_data: [],
             items: [],
             items_all: [],
@@ -124,10 +126,14 @@
                 axios.get(url).then(response => {
                     this.items = response.data.results;
                     this.next_page = response.data.next;
+                    this.prev_page = response.data.previous;
                 })
             },
             load_more: function () {
                 this.get_data(this.next_page);
+            },
+            go_back: function () {
+                this.get_data(this.prev_page);
             }
         },
  
