@@ -28,6 +28,11 @@ def orders_list_page(request):
 
 
 @login_required
+def single_order(request):
+     return render(request, "single_order.html")
+
+
+@login_required
 def order_page(request):
     if request.method == "POST":
         form = OrderForm(request.POST )
@@ -49,3 +54,5 @@ def user_login(request):
         if userform.is_valid():
             return redirect('orders')
     return render(request, "registration/login.html", {"form": userform})
+
+

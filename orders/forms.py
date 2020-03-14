@@ -12,5 +12,3 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = '__all__'
 
-
-    

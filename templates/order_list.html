@@ -39,7 +39,7 @@
             <tbody>
                 <tr v-for="i in sortOptions">
                     <th scope="row">1</th>
-                    <td>{% verbatim %}{{ i.id }}{% endverbatim %}</td>
+                    <td><a href="http://localhost:8000/orders_list/single_order">{% verbatim %}{{ i.id }}{% endverbatim %}</a></td>
                      <td>{% verbatim %}{{ i.client.username }}{% endverbatim %}</td>
                     <td>{% verbatim %}{{ i.manager.username }}{% endverbatim %}</td>
                     <td>{% verbatim %}{{ i.order_status }}{% endverbatim %}</td>
@@ -73,6 +73,7 @@
                         return "btn btn-success";
                     };
                 }
+
             },
             template: `<button type="submit" 
                         v-bind:class="buttonClass()" 
@@ -87,6 +88,7 @@
                 orders_data: [],
                 filter: '',
                 button_toggle: false,
+                counter: 0
             },
 
             computed: {
@@ -98,6 +100,12 @@
                     }
                 }
             },
+            methods: {
+                increment() {
+                    this.counter++;
+                }
+            },
+
             components: {
                 'subscript-button': subscriptButton,
 
