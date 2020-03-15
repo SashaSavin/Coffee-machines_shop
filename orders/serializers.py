@@ -24,6 +24,10 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = '__all__'
 
+class SingleOrderSerializer(OrderSerializer):
+     class Meta(OrderSerializer.Meta):
+        fields = OrderSerializer.Meta.fields 
+
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:

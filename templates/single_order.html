@@ -3,8 +3,51 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Заказ</title>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="shortcut icon" href="http://www.chetrachap.com/wp-content/uploads/2017/12/Logo-Growth-Profile-1500.png"
+        type="image/x-icon">
 </head>
 <body>
-	test
+
+	 {% block header %}
+        <nav class="navbar navbar-light" style="background-color: #8ee28c;">
+            <a class="navbar-brand" href="http://localhost:8000/">Персональный заказ</a>
+        </nav>
+    {% endblock %}
+
+
+	<div id ='single_order'>
+		<h1>Заказ # {% verbatim %}{{single_order_data.id}}{% endverbatim %}</h1>
+		<hr>
+		<p>Клиент: {% verbatim %}{{single_order_data.client.username}}{% endverbatim %}</p>
+		<p>Менеджер: {% verbatim %}{{single_order_data.manager.username}}{% endverbatim %}</p>
+		<p>Автор: {% verbatim %}{{single_order_data.author}}{% endverbatim %}</p>
+		<p>Цена: {% verbatim %}{{single_order_data.order_price}}{% endverbatim %}</p>
+		<p>Дата создания: {% verbatim %}{{single_order_data.date_and_time_of_order}}{% endverbatim %}</p>
+		<p>Статус заказа: {% verbatim %}{{single_order_data.order_status}}{% endverbatim %}</p>
+		<p>Продукт: {% verbatim %}{{single_order_data.products_list}}{% endverbatim %}</p>
+		
+	</div>
 </body>
+
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+    
+        var app = new Vue({
+            el: '#single_order',
+            data: {
+            	single_order_data: [],
+            },
+
+            mounted() {
+                axios
+                    .get('http://localhost:8000/api/order/1')
+                    .then(response => (this.single_order_data = response.data));
+
+            }
+        });
+    </script>
+
 </html>

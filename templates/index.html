@@ -50,7 +50,7 @@
  
     <div id='Order_list'>
         <br>
-        <img :src="image_src">
+        <img :src="image_src" class="img-thumbnail">
         <p> {% verbatim %} Наименование: {{ name }}{% endverbatim %} </p>
         <p> {% verbatim %} Описание: {{ description }}{% endverbatim %} </p>
         <p> {% verbatim %} Цена(BYN): {{ price }}{% endverbatim %} </p>
@@ -65,12 +65,12 @@
         </ul>
  
         <div>
-        <button style="  display:block; margin: auto;" @click="load_more"  >Вперёд</i>
+        <button style="  display:block; margin: auto;" @click="load_more" class="badge badge-pill badge-success"  >Вперёд</i>
 </button>
-  <button style=" display:block; margin: auto;" @click="go_back" >Назад</i>
+  <button style=" display:block; margin: auto;" @click="go_back" class="badge badge-pill badge-success">Назад</i>
 </button>
         </div>
-        <button type="submit" v-on:click="redirect" class="btn btn-success" style="position: relative; left: 50%;transform: translate(-50%, 0); margin:20px">
+        <button type="submit" v-on:click="redirect" class="btn btn-success" style="position: relative; left: 50%;transform: translate(-50%, 0); margin:20px" >
             Создать заказ
         </button>
  

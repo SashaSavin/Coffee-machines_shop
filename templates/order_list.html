@@ -28,7 +28,7 @@
         <table class="table table-hover ">
             <thead>
                 <tr>
-                    <th scope="col">номер п/п</th>
+                   
                     <th scope="col">номер заказа</th>
                     <th scope="col">клиент</th>
                     <th scope="col">менеджер</th>
@@ -38,7 +38,6 @@
             </thead>
             <tbody>
                 <tr v-for="i in sortOptions">
-                    <th scope="row">1</th>
                     <td><a href="http://localhost:8000/orders_list/single_order">{% verbatim %}{{ i.id }}{% endverbatim %}</a></td>
                      <td>{% verbatim %}{{ i.client.username }}{% endverbatim %}</td>
                     <td>{% verbatim %}{{ i.manager.username }}{% endverbatim %}</td>
