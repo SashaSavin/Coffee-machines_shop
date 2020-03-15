@@ -49,19 +49,14 @@
     <h2 style="color:#8ee28c; margin-right: auto;"><b>Список товарных позиций</b></h2>
  
     <div id='Order_list'>
-        <br>
-        <img :src="image_src" class="img-thumbnail">
-        <p> {% verbatim %} Наименование: {{ name }}{% endverbatim %} </p>
-        <p> {% verbatim %} Описание: {{ description }}{% endverbatim %} </p>
-        <p> {% verbatim %} Цена(BYN): {{ price }}{% endverbatim %} </p>
-        <br>
-        <hr>
         <label for='search' style='display: table;'>Поиск по товарам:</label>
         <input type="text" v-model="filter" placeholder="Название товара..." id='search'>
         <hr>
         <ul v-for="(product, index) in sortOptions" style="width: 500px;">
-            <a href="#" class="list-group-item list-group-item-action" v-on:click="showProduct(index)">
+            <a href="product_detail\" class="list-group-item list-group-item-action" v-on:click="showProduct(index)">
+                
                 {% verbatim %}{{ product.name }} {% endverbatim %}</a>
+                
         </ul>
  
         <div>
@@ -70,9 +65,6 @@
   <button style=" display:block; margin: auto;" @click="go_back" class="badge badge-pill badge-success">Назад</i>
 </button>
         </div>
-        <button type="submit" v-on:click="redirect" class="btn btn-success" style="position: relative; left: 50%;transform: translate(-50%, 0); margin:20px" >
-            Создать заказ
-        </button>
  
         <hr>
         <br>
@@ -96,6 +88,7 @@
             description: '',
             price: '',
             name: '',
+            id: '',
  
             next_page: "",
             prev_page: ""
@@ -112,10 +105,11 @@
                 this.description = this.items[index]['description'];
                 this.price = this.items[index]['price'];
                 this.name = this.items[index]['name'];
+                this.id = this.items[index]['id'];
                 console.log(index);
             },
             redirect: function (onclick) {
-                window.location.href = 'http://localhost:8000/orders_list/order'
+                window.location.href = 'http://localhost:8000/orders_list/create_order'
             },
  
             callback: function (page) {

@@ -18,36 +18,26 @@
 
 
 	<div id ='single_order'>
-		<h1>Заказ # {% verbatim %}{{single_order_data.id}}{% endverbatim %}</h1>
+		<h1>Заказ # {{data.id}}</h1>
 		<hr>
-		<p>Клиент: {% verbatim %}{{single_order_data.client.username}}{% endverbatim %}</p>
-		<p>Менеджер: {% verbatim %}{{single_order_data.manager.username}}{% endverbatim %}</p>
-		<p>Автор: {% verbatim %}{{single_order_data.author}}{% endverbatim %}</p>
-		<p>Цена: {% verbatim %}{{single_order_data.order_price}}{% endverbatim %}</p>
-		<p>Дата создания: {% verbatim %}{{single_order_data.date_and_time_of_order}}{% endverbatim %}</p>
-		<p>Статус заказа: {% verbatim %}{{single_order_data.order_status}}{% endverbatim %}</p>
-		<p>Продукт: {% verbatim %}{{single_order_data.products_list}}{% endverbatim %}</p>
+		<p>Клиент: {{data.client.username}}</p>
+		<p>Менеджер: {{data.manager.username}}</p>
+		<p>Автор: {{data.author}}</p>
+		<p>Цена: {{data.order_price}} </p>
+		<p>Дата создания: {{data.date_and_time_of_order}}</p>
+		<p>Статус заказа: {{data.order_status}} | {{form.order_status}}</p>
+		<p>Продукт: {{data.products_list}}</p>
 		
+
+		
+
+		<form action="http://localhost:8000/orders_list" method="post" >
+		{% csrf_token %}
+	   	<button type="submit" class="btn btn-success" style="position: relative; left: 50%;transform: translate(-50%, 0); margin:20px" >Сохранить</button>
+
+		</form>
+
 	</div>
 </body>
-
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script type="text/javascript">
-    
-        var app = new Vue({
-            el: '#single_order',
-            data: {
-            	single_order_data: [],
-            },
-
-            mounted() {
-                axios
-                    .get('http://localhost:8000/api/order/1')
-                    .then(response => (this.single_order_data = response.data));
-
-            }
-        });
-    </script>
 
 </html>

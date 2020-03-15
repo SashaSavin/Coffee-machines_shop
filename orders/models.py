@@ -21,6 +21,7 @@ class User(AbstractUser):
 
 
 class Product(models.Model):
+    
     image = models.CharField(max_length=100, verbose_name='Изображение товара')
     description = models.TextField(
         blank=True, null=True, default=None, verbose_name='Описание товара')

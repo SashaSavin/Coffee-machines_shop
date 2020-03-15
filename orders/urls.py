@@ -16,9 +16,12 @@ router.register(r'comments', CommentViewSet, 'comments')
 
 urlpatterns = [
     path('', views.index),
+    path('product_detail/<int:pk>/', views.product_detail),
     path('orders_list', views.orders_list_page, name='orders'),
-    path('orders_list/order', views.order_page, name='order_page'),
-    path('orders_list/single_order', views.single_order),
+    path('orders_list/create_order', views.order_page, name='order_page'),
+    path('orders_list/create_order/single_order/<int:pk>/', views.single_order),
+
+
     url(r'^login', auth_views.LoginView.as_view(), {
         'template_name': 'login.html'}, name='login'),
     path('logout', auth_views.LogoutView.as_view(), name='logout'),

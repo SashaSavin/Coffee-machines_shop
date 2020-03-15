@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 
-from orders.models import Order, User
+from orders.models import Order, User, Product
 
 from django.contrib.auth.decorators import login_required
 from orders.forms import OrderForm
@@ -21,15 +21,23 @@ def index(request):
 
 @login_required
 def orders_list_page(request):
-    data = {'Order': Order.objects.all(
-    ), 'User': User.objects.filter(user_type='MN')}
+    data = {'Order': Order.objects.all(),
+             'User': User.objects.filter(user_type='MN')}
 
     return render(request, "order_list.html", context=data)
 
 
 @login_required
-def single_order(request):
-     return render(request, "single_order.html")
+def single_order(request, pk):
+    data = Order.objects.get(id = pk)
+    form = OrderForm()
+    return render(request, "single_order.html", context= {'data':data, 'form': form})
+
+
+@login_required
+def product_detail(request, pk):
+    data = Product.objects.get(id = pk)
+    return render(request, "product_detail.html", context= {'data':data})
 
 
 @login_required

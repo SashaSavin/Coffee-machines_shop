@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Detail</title>
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="http://www.chetrachap.com/wp-content/uploads/2017/12/Logo-Growth-Profile-1500.png"
+        type="image/x-icon"> 
+</head>
+<body>
+	    <div id='Order' >
+	        <br>
+	        <p>Изображение: {{ data.image }} </p>
+	        <p> Наименование: {{ data.name }} </p>
+	        <p> Описание: {{ data.description }} </p>
+	        <p> Цена(BYN): {{ data.price }} </p>
+	        <br>
+	        <hr>
+
+
+	         <button type="submit" v-on:click="redirect" class="btn btn-success" style="position: relative; left: 50%;transform: translate(-50%, 0); margin:20px" >
+            Создать заказ
+        	</button>
+    	</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#Order',
+        data: {
+        },
+        methods: {
+        
+            redirect: function (onclick) {
+                window.location.href = 'http://localhost:8000/orders_list/create_order'
+            },
+        },
+    });
+ 
+</script>
+
+</body>
+</html>
