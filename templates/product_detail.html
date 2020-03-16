@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Detail</title>
+	<title>Продукт</title>
 	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="shortcut icon" href="http://www.chetrachap.com/wp-content/uploads/2017/12/Logo-Growth-Profile-1500.png"
-        type="image/x-icon"> 
+        type="image/x-icon">
 </head>
 <body>
-
 
 	 {% block header %}
         <nav class="navbar navbar-light" style="background-color: #8ee28c;">
@@ -19,11 +18,10 @@
         </nav>
     {% endblock %}
 
-
 	    <div id='Order' >
 	        <br>
              <p><a href=""><img src="{{ data.image }}"
-            width="189" height="255" alt="test" style="display:block; margin: auto;"></a>
+            width="189" height="255" alt="product_img" style="display:block; margin: auto;"></a>
 	        <p> Наименование: {{ data.name }} </p>
 	        <p> Описание: {{ data.description }} </p>
 	        <p> Цена(BYN): {{ data.price }} </p>
@@ -33,11 +31,44 @@
 	         <button type="submit" v-on:click="redirect" class="btn btn-success" style="position: relative; left: 50%;transform: translate(-50%, 0); margin:20px" >
             Создать заказ
         	</button>
+            <hr>
+
+            <h2>Комментарии:</h2>
+            {% with comments.count as total_comments %}
+                <h2>
+                    {{ total_comments }} комментарий {{ total_comments|pluralize }}
+                </h2>
+            {% endwith %}
+
+            {% for comment in comments %}
+                <div class="comment">
+                    <p class="info">
+                        Комментарий {{ forloop.counter }} by {{ comment.name }}
+                        {{ comment.created }}
+                    </p>
+                    {{ comment.body|linebreaks }}
+                </div>
+            {% empty %}
+                <p>Ещё нет комментариев.</p>
+            {% endfor %}
+
+            {% if new_comment %}
+                <h2>Ваш комменатрий был добавлен.</h2>
+            {% else %}
+                <h2>Добавить комментарий</h2>
+                <form action="." method="post">
+                    {{ comment_form.as_p }}
+                    {% csrf_token %}
+                    <p><input type="submit" value="Отправить" ></p>
+                </form>
+            {% endif %}
+
     	</div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
+
     var app = new Vue({
         el: '#Order',
         data: {
@@ -45,7 +76,7 @@
         methods: {
         
             redirect: function (onclick) {
-                window.location.href = 'http://localhost:8000/orders_list/create_order'
+                window.location.href = 'http://localhost:8000/orders_list/create_order?product= {{ data.id }}'
             },
         },
     });

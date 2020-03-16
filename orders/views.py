@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 from orders.models import Order, User, Product
 
 from django.contrib.auth.decorators import login_required
-from orders.forms import OrderForm
+from orders.forms import OrderForm, CommentForm
 
 
 def index(request):
@@ -36,13 +36,25 @@ def single_order(request, pk):
 @login_required
 def product_detail(request, pk):
     data = Product.objects.get(id = pk)
-    return render(request, "product_detail.html", context= {'data':data})
+    # comments = data.comments.filter(active=True)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.data = data
+            new_comment.save()
+        else:
+            comment_form = CommentForm()
+    return render(request, "product_detail.html", context={'data':data,
+                                                           'comment_form':comment_form,
+                                                           # 'comments': comments,
+                                                           })
 
 
 @login_required
 def order_page(request):
     if request.method == "POST":
-        form = OrderForm(request.POST )
+        form = OrderForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
 

@@ -14,14 +14,15 @@ STATUS_CHOICES = (
 )
 
 
-
 class User(AbstractUser):
     user_type = models.CharField(max_length=2, default='test', choices=[
         ('MN', 'Manager'), ('CL', 'Client')], verbose_name='Пользователи')
 
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
 
 class Product(models.Model):
-    
     image = models.CharField(max_length=100, verbose_name='Изображение товара')
     description = models.TextField(
         blank=True, null=True, default=None, verbose_name='Описание товара')
@@ -37,7 +38,6 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-
     products_list = models.ManyToManyField(Product, verbose_name='Список товаров')
     manager = models.ForeignKey(User, on_delete=models.CASCADE, related_name='manager_orders', verbose_name='Менеджер')
     client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='client_orders', verbose_name='Клиент')
