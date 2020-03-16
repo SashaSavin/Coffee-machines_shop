@@ -36,19 +36,14 @@ def single_order(request, pk):
 @login_required
 def product_detail(request, pk):
     data = Product.objects.get(id = pk)
-    # comments = data.comments.filter(active=True)
-    if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            new_comment.data = data
-            new_comment.save()
-        else:
-            comment_form = CommentForm()
-    return render(request, "product_detail.html", context={'data':data,
-                                                           'comment_form':comment_form,
-                                                           # 'comments': comments,
-                                                           })
+    comment_form = CommentForm(request.POST)
+    if comment_form.is_valid():
+        new_comment = comment_form.save(commit=False)
+        new_comment.data = data
+        new_comment.save()
+    else:
+        comment_form = CommentForm()
+    return render(request, "product_detail.html", context= {'data':data, 'comment_form':comment_form})
 
 
 @login_required
