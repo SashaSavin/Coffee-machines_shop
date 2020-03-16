@@ -8,14 +8,16 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
 
     {% block header %}
+
         <nav class="navbar navbar-light" style="background-color: #8ee28c;">
-            <a class="navbar-brand" href="#" >Авторизация</a>
+            <a class="navbar-brand" href="http://localhost:8000/" >Авторизация</a>
         </nav>
     {% endblock %}
 {% endblock %}
 
 {% block body %}
 {% block login_auth %}
+    <h4 style="display:block; margin: auto;">Система сопровождения заказов</h4>
     <div id='auth' align='center' style="margin: 100px;">
     <form class='validForm' id='signin' method='post' action='/login'>
     {{ form.as_p }}

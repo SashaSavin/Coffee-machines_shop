@@ -19,7 +19,7 @@
 <body>
     <header>
         <nav class="navbar navbar-light" style="background-color: #8ee28c;">
-            <a class="navbar-brand" href="">Система сопровождения заказов</a>
+            <a class="navbar-brand" href="">Список товарных позиций</a>
             {% if user.is_authenticated %}
             <div class='uname' style=" margin-left: auto;">{{ request.user.username }},</div>
             <a href='{% url "logout" %}'> Logout</a>
@@ -45,16 +45,15 @@
             </div>
         </nav>
     </header>
- 
-    <h2 style="color:#8ee28c; margin-right: auto;"><b>Список товарных позиций</b></h2>
+
  
     <div id='Order_list'>
         <label for='search' style='display: table;'>Поиск по товарам:</label>
         <input type="text" v-model="filter" placeholder="Название товара..." id='search'>
         <hr>
         <ul v-for="(product, index) in sortOptions" style="width: 500px;">
-            <a href="product_detail\" class="list-group-item list-group-item-action" v-on:click="showProduct(index)">
-                
+            <a :href="'product_detail/'+product.id" class="list-group-item list-group-item-action" v-on:click="showProduct(index)">
+
                 {% verbatim %}{{ product.name }} {% endverbatim %}</a>
                 
         </ul>
@@ -68,6 +67,12 @@
  
         <hr>
         <br>
+
+
+
+
+
+
     </div>
 </body>
  

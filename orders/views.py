@@ -23,7 +23,6 @@ def index(request):
 def orders_list_page(request):
     data = {'Order': Order.objects.all(),
              'User': User.objects.filter(user_type='MN')}
-
     return render(request, "order_list.html", context=data)
 
 
