@@ -17,8 +17,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'orders',
+
     'rest_framework',
+    'rest_framework_swagger',
 ]
+
+
+REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

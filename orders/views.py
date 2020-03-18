@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
+from rest_framework_swagger.views import get_swagger_view
 
 from orders.forms import LoginForm
 
@@ -14,6 +15,7 @@ from orders.models import Order, User, Product
 from django.contrib.auth.decorators import login_required
 from orders.forms import OrderForm, CommentForm
 
+schema_view = get_swagger_view(title='Orders application API')
 
 def index(request):
     return render(request, "index.html")

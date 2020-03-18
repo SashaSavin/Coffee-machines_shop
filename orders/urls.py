@@ -7,12 +7,15 @@ from orders.viewsets import UserViewSet, ProductViewSet, OrderViewSet, CommentVi
 from rest_framework import routers
 
 from django.contrib.auth import views as auth_views
+from orders.views import schema_view
+
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, 'users')
 router.register(r'products', ProductViewSet, 'products')
 router.register(r'order', OrderViewSet, 'order')
 router.register(r'comments', CommentViewSet, 'comments')
+
 
 urlpatterns = [
     path('', views.index),
@@ -27,4 +30,6 @@ urlpatterns = [
     path('logout', auth_views.LogoutView.as_view(), name='logout'),
 
     path('api/', include(router.urls)),
+
+    path('docs/', schema_view)
 ]
