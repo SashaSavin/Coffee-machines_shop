@@ -13,25 +13,25 @@
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="shortcut icon" href="http://www.chetrachap.com/wp-content/uploads/2017/12/Logo-Growth-Profile-1500.png"
         type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/index_page_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-light" style="background-color: #8ee28c;">
-            <a class="navbar-brand" href="">Список товарных позиций</a>
-            {% if user.is_authenticated %}
-            <div class='uname' style=" margin-left: auto;">{{ request.user.username }},</div>
-            <a href='{% url "logout" %}'> Logout</a>
-            {% else %}
-            <a href='{% url "login" %}'> Login</a>
-            {% endif %}
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Список товарных позиций</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+                    aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                   <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8000/login">Авторизация</a>
                     </li>
@@ -41,33 +41,56 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">О нас</a>
                     </li>
+                    <li class="nav-item" style="margin:left;">
+                        {% if user.is_authenticated %}
+                            {{ request.user.username }}
+                        <a href='{% url "logout" %}'> Logout</a>
+                        {% else %}
+                        <a href='{% url "login" %}'> Login</a>
+                        {% endif %}
+                    </li>
                 </ul>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+
             </div>
         </nav>
+
     </header>
 
- 
-    <div id='Order_list'>
-        <label for='search' style='display: table;'>Поиск по товарам:</label>
-        <input type="text" v-model="filter" placeholder="Название товара..." id='search'>
-        <hr>
-        <ul v-for="(product, index) in sortOptions" style="width: 500px;">
-            <a :href="'product_detail/'+product.id" class="list-group-item list-group-item-action" v-on:click="showProduct(index)">
+<div class="sidenav">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#clients">Clients</a>
+  <a href="#contact">Contact</a>
+</div>
 
-                {% verbatim %}{{ product.name }} {% endverbatim %}</a>
-                
-        </ul>
- 
-        <div>
-        <button style="  display:block; margin: auto;" @click="load_more" class="badge badge-pill badge-success"  >Вперёд</i>
-</button>
-  <button style=" display:block; margin: auto;" @click="go_back" class="badge badge-pill badge-success">Назад</i>
-</button>
+    <div id='Order_list' style="display: flex;flex-wrap: wrap;flex-direction: row;justify-content: space-between">
+        <div class="card border-dark mb-3"  v-for="(product, index) in sortOptions" style="max-width: 20rem;">
+            <div class="card-header">  {% verbatim %}{{ product.name }} {% endverbatim %} </div>
+            <div class="card-body">
+                {% verbatim %}{{ product.description }} {% endverbatim %}
+               <a :href="'product_detail/'+product.id" class="list-group-item list-group-item-action" v-on:click="showProduct(index)">
+                Перейти</a>
+                </h4>
+            </div>
         </div>
- 
+        <div>
+        <button type="button" class="btn btn-primary btn-sm"  @click="load_more">Вперёд</button>
+            <button type="button" class="btn btn-primary btn-sm"  @click="go_back">Назад</button>
+
+        </div>
+
         <hr>
         <br>
 
+    </div>
+
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <p></p>
     </div>
 </body>
  

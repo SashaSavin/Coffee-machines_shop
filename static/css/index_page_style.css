@@ -22,12 +22,37 @@ a:focus:after {
    text-align: center;
 }
 
-.Order_list, img, ul, label, input{
-    margin-right: auto;
-    text-align: center;
-    margin-top: auto;
+.Order_list{
+display: flex;
+flex-direction: row;
+justify-content: center;
+}
+
+.sidenav {
+    width: 130px;
+    position: fixed;
+    z-index: 1;
+    top: 20px;
+    left: 10px;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 8px 0;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #2196F3;
     display: block;
-    margin: auto;
-    margin-right: auto;
+}
+
+.sidenav a:hover {
+    color: #064579;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
 }
 

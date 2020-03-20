@@ -13,7 +13,7 @@ from django.http import HttpResponseRedirect
 from orders.models import Order, User, Product
 
 from django.contrib.auth.decorators import login_required
-from orders.forms import OrderForm, CommentForm
+from orders.forms import OrderForm, CommentForm, ProductForm
 import logging
 
 logger = logging.getLogger(__name__)
@@ -21,8 +21,10 @@ logger = logging.getLogger(__name__)
 
 schema_view = get_swagger_view(title='Orders application API')
 
+
 def index(request):
-    return render(request, "index.html")
+    form = ProductForm()
+    return render(request, "index.html", context= {'product': form})
 
 
 @login_required

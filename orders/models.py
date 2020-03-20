@@ -22,6 +22,7 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
+
 class Product(models.Model):
     image = models.CharField(max_length=100, verbose_name='Изображение товара')
     description = models.TextField(

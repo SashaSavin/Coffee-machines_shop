@@ -1,5 +1,5 @@
 from django import forms
-from orders.models import Order, Comment
+from orders.models import Order, Comment, Product
 
 
 class LoginForm(forms.Form):
@@ -18,3 +18,8 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = '__all__'
 
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = '__all__'
