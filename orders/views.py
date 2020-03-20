@@ -14,6 +14,10 @@ from orders.models import Order, User, Product
 
 from django.contrib.auth.decorators import login_required
 from orders.forms import OrderForm, CommentForm
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 schema_view = get_swagger_view(title='Orders application API')
 
