@@ -39,7 +39,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    products_list = models.ManyToManyField(Product, verbose_name='Список товаров')
+    products_list = models.OneToOneField(Product, on_delete=models.CASCADE, verbose_name='Список товаров')
     manager = models.ForeignKey(User, on_delete=models.CASCADE, related_name='manager_orders', verbose_name='Менеджер')
     client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='client_orders', verbose_name='Клиент')
     author = models.CharField(max_length=100, verbose_name='Автор')
