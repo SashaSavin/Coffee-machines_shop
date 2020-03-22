@@ -17,6 +17,8 @@ router.register(r'order', OrderViewSet, 'order')
 router.register(r'comments', CommentViewSet, 'comments')
 
 
+
+
 urlpatterns = [
     path('', views.index),
     path('product_detail/<int:pk>/', views.product_detail),
@@ -30,5 +32,6 @@ urlpatterns = [
     path('logout', auth_views.LogoutView.as_view(), name='logout'),
 
     path('api/', include(router.urls)),
-    path('docs/', schema_view)
+    path('docs/', schema_view),
+
 ]

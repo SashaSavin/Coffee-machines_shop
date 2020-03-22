@@ -11,7 +11,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class PageNumberSetPagination(PageNumberPagination):
-    page_size = 5
+    page_size = 4
     page_size_query_param = '10'
 
 
