@@ -39,7 +39,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    products_list = models.OneToOneField(Product, on_delete=models.CASCADE, verbose_name='Список товаров')
+    products_list = models.OneToOneField(Product, on_delete=models.CASCADE, verbose_name='Продукт')
     manager = models.ForeignKey(User, on_delete=models.CASCADE, related_name='manager_orders', verbose_name='Менеджер')
     client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='client_orders', verbose_name='Клиент')
     author = models.CharField(max_length=100, verbose_name='Автор')
@@ -57,16 +57,22 @@ class Order(models.Model):
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
 
+    def __str__(self):
+        return '{}'.format(self.products_list)
+
 
 class Comment(models.Model):
-    order = models.ForeignKey(
-        Order, on_delete=models.CASCADE, primary_key=True)
+    order = models.OneToOneField(
+        Order, on_delete=models.CASCADE, primary_key=True, blank=True)
 
     author = models.OneToOneField(
-        User, on_delete=models.CASCADE)
+        User,  on_delete=models.CASCADE, blank=True)
     text = models.TextField(blank=True, null=True,
                             default=None, verbose_name='Комментарий')
 
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+
+    def __str__(self):
+        return 'Коммент by {} on {}'.format(self.author, self.order)

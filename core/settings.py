@@ -16,8 +16,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'orders',
 
+
     'rest_framework',
     'rest_framework_swagger',
+
 ]
 
 REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}
@@ -120,3 +122,4 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+

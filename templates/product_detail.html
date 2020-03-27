@@ -36,36 +36,21 @@
             <hr>
 
             <h2>Комментарии:</h2>
-            {% with comments.count as total_comments %}
-                <hr>
-                <h2>
-                    {{ total_comments }} комментарий {{ total_comments|pluralize }}
-                </h2>
-            {% endwith %}
-
-            {% for comment in comments %}
                 <div class="comment">
                     <p class="info">
-                        Комментарий {{ forloop.counter }} by {{ comment.name }}
-                        {{ comment.created }}
+
+                        {{ cmt.author }}: {{ cmt.text }}
                     </p>
-                    {{ comment.body|linebreaks }}
+
                 </div>
-            {% empty %}
-                <p>Ещё нет комментариев.</p>
-            {% endfor %}
             <br>
             <hr>
-            {% if new_comment %}
-                <h2>Ваш комменатрий был добавлен.</h2>
-            {% else %}
                 <h2>Добавить комментарий</h2>
                 <form action="." method="post">
                     {{ comment_form.as_p }}
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-success" >Отправить</button>
+                    <button type="submit" class="btn btn-success">Отправить</button>
                 </form>
-            {% endif %}
 
 
     	</div>

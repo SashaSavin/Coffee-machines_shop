@@ -39,7 +39,7 @@
             </thead>
             <tbody>
                 <tr v-for="i in sortOptions">
-                    <td><a :href="'http://localhost:8000/orders_list/create_order/single_order/' + i.id ">{% verbatim %}{{ i.id }}{% endverbatim %}</a></td>
+                    <td><a :href="'http://localhost:8000/orders_list/single_order/' + i.id ">{% verbatim %}{{ i.id }}{% endverbatim %}</a></td>
                      <td>{% verbatim %}{{ i.client.username }}{% endverbatim %}</td>
                     <td>{% verbatim %}{{ i.manager.username }}{% endverbatim %}</td>
                     <td>{% verbatim %}{{ i.order_status }}{% endverbatim %}</td>

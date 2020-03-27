@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 
-from orders.models import Order, User, Product
+from orders.models import Order, User, Product, Comment
 from django.contrib.auth.decorators import login_required
 from orders.forms import OrderForm, CommentForm, ProductForm
 import logging
@@ -20,6 +20,23 @@ schema_view = get_swagger_view(title='Orders application API')
 def index(request):
     form = ProductForm()
     return render(request, "index.html", context={'product': form})
+
+
+@login_required
+def forum(request):
+    return render(request, "forum.html")
+
+@login_required
+def todos(request):
+    return render(request, "todo.html")
+
+@login_required
+def news(request):
+    return render(request, "news.html")
+
+
+def about(request):
+    return render(request, "about.html")
 
 
 @login_required
@@ -39,14 +56,16 @@ def single_order(request, pk):
 @login_required
 def product_detail(request, pk):
     data = Product.objects.get(id=pk)
+    comment = Comment.objects.get()
     comment_form = CommentForm(request.POST)
-    if comment_form.is_valid():
-        new_comment = comment_form.save(commit=False)
-        new_comment.data = data
-        new_comment.save()
-    else:
-        comment_form = CommentForm()
-    return render(request, "product_detail.html", context={'data': data, 'comment_form': comment_form})
+    if request.method == 'POST':
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.data = data
+            new_comment.save()
+        else:
+            comment_form = CommentForm()
+    return render(request, "product_detail.html", context={'data': data, 'comment_form': comment_form, 'cmt': comment})
 
 
 @login_required
