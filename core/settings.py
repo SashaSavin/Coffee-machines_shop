@@ -5,7 +5,7 @@ SECRET_KEY = 'g%(x+!7@g%kn8h8bpsxkr2cuto1z&qwd*a_r((3owsz*+3#w$c'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 INSTALLED_APPS = [
     'channels',
