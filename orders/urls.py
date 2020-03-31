@@ -16,7 +16,7 @@ router.register(r'comments', CommentViewSet, 'comments')
 urlpatterns = [
     path('', views.index),
     path('chat', views.chat),
-    path('<str:room_name>', views.room, name='room'),
+    path('chat/<str:room_name>', views.room, name='room'),
     path('todos', views.todos),
     path('news', views.news),
     path('about', views.about),
