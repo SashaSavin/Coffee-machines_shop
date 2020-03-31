@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Chat Rooms</title>
+    <title>Форум</title>
 </head>
 <body>
-    В какой раздел хотите войти?<br>
-    <input id="room-name-input" type="text" size="100"><br>
-    <input id="room-name-submit" type="button" value="Enter">
+    В какой раздел вы бы хотели попасть?<br/>
+    <input id="room-name-input" type="text" size="100"/><br/>
+    <input id="room-name-submit" type="button" value="Enter"/>
 
     <script>
         document.querySelector('#room-name-input').focus();
@@ -19,7 +19,7 @@
 
         document.querySelector('#room-name-submit').onclick = function(e) {
             var roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/forum/' + roomName + '/';
+            window.location.pathname = '/chat/' + roomName + '/';
         };
     </script>
 </body>

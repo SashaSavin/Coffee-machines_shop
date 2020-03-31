@@ -23,8 +23,8 @@ def index(request):
 
 
 @login_required
-def forum(request):
-    return render(request, "forum.html")
+def chat(request):
+    return render(request, "chat.html")
 
 @login_required
 def todos(request):
@@ -90,3 +90,9 @@ def user_login(request):
         if userform.is_valid():
             return redirect('orders')
     return render(request, "registration/login.html", {"form": userform})
+
+
+def room(request, room_name):
+    return render(request, 'room.html', {
+        'room_name': room_name
+    })
