@@ -22,7 +22,6 @@ def index(request):
     return render(request, "index.html", context={'product': form})
 
 
-@login_required
 def chat(request):
     return render(request, "chat.html")
 
