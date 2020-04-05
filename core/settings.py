@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'webpack_loader',
+    'webpack_loader', # для работы с local vue
 
     'rest_framework',
     'rest_framework_swagger',

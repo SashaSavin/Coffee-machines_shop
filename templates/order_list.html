@@ -1,4 +1,6 @@
+{% extends 'base.html' %}
 {% load static %}
+
 {% block head %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,13 +11,10 @@
         type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{% static 'css/order_list_page_style.css' %}">
  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-
-    {% block header %}
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="http://localhost:8000/">Страница заказа</a>
-        </nav>
-    {% endblock %}
 {% endblock %}
+
+{% block name %} Список заказов {% endblock %}
+{% block sidenav %}{% endblock %}
 
 {% block body %}
     <div id="app">
@@ -48,6 +47,9 @@
             </tbody>
         </table>
     </div>
+{% endblock %}
+
+{% block vue %}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript">

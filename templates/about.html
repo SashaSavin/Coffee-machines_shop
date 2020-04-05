@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
- {% block head %}
+{% block head %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Новости{% endblock %}</title>
+    <title>{% block title %}Основная страница{% endblock %}</title>
     <link rel="stylesheet" href="../static/css/index_page_style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -15,5 +15,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     {% endblock %}
 
-    {% block name %} Новости {% endblock %}
-    {% block sidenav %} {% endblock %}
+    {% block name %}О нас{% endblock %}
+    {% block sidenav%}{% endblock %}
+
+{% block body %}
+{% endblock %}
+

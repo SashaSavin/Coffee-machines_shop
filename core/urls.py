@@ -8,7 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('orders.urls')),
 
-
 ]
 
 # закомментить, если не нужен дебаг тул

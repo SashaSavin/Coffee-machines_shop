@@ -1,15 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Форум</title>
-</head>
+{% extends 'base.html' %}
+{% load static %}
+
+
+ {% block head %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} Форумы {% endblock %}</title>
+    <link rel="stylesheet" href="../static/css/index_page_style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="http://www.chetrachap.com/wp-content/uploads/2017/12/Logo-Growth-Profile-1500.png"
+        type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    {% endblock %}
+
+{% block body %}
 <body>
     В какой раздел вы бы хотели попасть?<br/>
     <input id="room-name-input" type="text" size="100"/><br/>
     <input id="room-name-submit" type="button" value="Enter"/>
 
-       <script>
+
+</body>
+{% endblock %}
+
+{% block scripts %}
+  <script>
         document.querySelector('#room-name-input').focus();
         document.querySelector('#room-name-input').onkeyup = function(e) {
             if (e.keyCode === 13) {  // enter, return
@@ -19,8 +37,10 @@
 
         document.querySelector('#room-name-submit').onclick = function(e) {
             var roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/chat/' + roomName + '/';
+            window.location.pathname = 'ws/chat/' + roomName;
         };
     </script>
-</body>
-</html>
+{% endblock %}
+
+    {% block name %} Форумы {% endblock %}
+    {% block sidenav %} {% endblock %}
