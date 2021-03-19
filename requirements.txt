@@ -13,7 +13,7 @@ django-bootstrap-themes==3.3.6
 django-debug-toolbar==2.1
 django-rest-swagger==2.2.0
 django-webpack-loader==0.6.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 fastapi==0.52.0
 h11==0.9.0
 idna==2.8
